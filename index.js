@@ -5,7 +5,8 @@ const suffixes = [
   'ment',
   'mently',
   'Wiz',
-  'Stack'
+  'Stack',
+  'space'
 ]
 
 const nouns = [
