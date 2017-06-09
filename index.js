@@ -4,6 +4,9 @@ const suffixes = [
   'vest',
   'ment',
   'mently',
+  'Wiz',
+  'Stack',
+  'space'
 ]
 
 const nouns = [
@@ -1531,11 +1534,121 @@ const nouns = [
   "yesterday"
 ]
 
-const generateName = () => {
-  const noun = nouns[Math.floor(Math.random() * nouns.length)]
-  const suffix = suffixes[Math.floor(Math.random() * suffixes.length)]
-
-  return noun + suffix
+const loadingText = {
+      nouns : [
+        'action items', 'alignments', 'applications', 'architectures', 'bandwidth', 'benefits',
+        'best practices', 'catalysts for change', 'channels', 'collaboration and idea-sharing', 'communities', 'content',
+        'convergence', 'core competencies', 'customer service', 'data', 'deliverables', 'e-business', 'e-commerce', 'e-markets',
+        'e-tailers', 'e-services', 'experiences', 'expertise', 'functionalities', 'growth strategies', 'human capital',
+        'ideas', 'imperatives', 'infomediaries', 'information', 'infrastructures', 'initiatives', 'innovation',
+        'intellectual capital', 'interfaces', 'internal or "organic" sources', 'leadership', 'leadership skills',
+        'manufactured products', 'markets', 'materials', 'meta-services', 'methodologies', 'methods of empowerment', 'metrics',
+        'mindshare', 'models', 'networks', 'niches', 'niche markets', 'opportunities', '"outside the box" thinking', 'outsourcing',
+        'paradigms', 'partnerships', 'platforms', 'portals', 'potentialities', 'process improvements', 'processes', 'products',
+        'quality vectors', 'relationships', 'resources', 'results', 'ROI', 'scenarios', 'schemas', 'services', 'solutions',
+        'sources', 'strategic theme areas', 'supply chains', 'synergy', 'systems', 'technologies', 'technology',
+        'testing procedures', 'total linkage', 'users', 'value', 'vortals', 'web-readiness', 'web services'
+      ],
+      verbs : [
+        'actualize', 'administrate', 'aggregate', 'architect', 'benchmark', 'brand', 'build', 'communicate', 'conceptualize',
+        'coordinate', 'create', 'cultivate', 'customize', 'deliver', 'deploy', 'develop', 'disintermediate', 'disseminate',
+        'drive', 'embrace', 'e-enable', 'empower', 'enable', 'engage', 'engineer', 'enhance', 'envisioneer', 'evisculate',
+        'evolve', 'expedite', 'exploit', 'extend', 'fabricate', 'facilitate', 'fashion', 'formulate', 'foster', 'generate',
+        'grow', 'harness', 'impact', 'implement', 'incentivize', 'incubate', 'initiate', 'innovate', 'integrate', 'iterate',
+        'leverage existing', 'leverage other\'s', 'maintain', 'matrix', 'maximize', 'mesh', 'monetize', 'morph', 'myocardinate',
+        'negotiate', 'network', 'optimize', 'orchestrate', 'parallel task', 'plagiarize', 'pontificate', 'predominate',
+        'procrastinate', 'productivate', 'productize', 'promote', 'provide access to', 'pursue', 'recaptiualize',
+        'reconceptualize', 'redefine', 're-engineer', 'reintermediate', 'reinvent', 'repurpose', 'restore', 'revolutionize',
+        'scale', 'seize', 'simplify', 'strategize', 'streamline', 'supply', 'syndicate', 'synergize', 'synthesize', 'target',
+        'transform', 'transition', 'underwhelm', 'unleash', 'utilize', 'visualize', 'whiteboard'
+      ],
+      adverbs : [
+        'appropriately', 'assertively', 'authoritatively', 'collaboratively', 'compellingly', 'competently', 'completely',
+        'continually', 'conveniently', 'credibly', 'distinctively', 'dramatically', 'dynamically', 'efficiently',
+        'energistically', 'enthusiastically', 'globally', 'holisticly', 'interactively', 'intrinsicly', 'monotonectally',
+        'objectively', 'phosfluorescently', 'proactively', 'professionally', 'progressively', 'quickly', 'rapidiously',
+        'seamlessly', 'synergistically', 'uniquely'
+      ],
 }
 
-console.log(generateName())
+const fonts = [
+  'Abril Fatface',
+  'Alfa Slab One',
+  'Audiowide',
+  'Baloo Bhaina',
+  'Chewy',
+  'Coiny',
+  'Comfortaa',
+  'Crushed',
+  'Fredoka One',
+  'Lobster',
+  'Lobster Two',
+  'Luckiest Guy',
+  'Modak',
+  'Mogra',
+  'Nunito',
+  'Open Sans',
+  'Passion One',
+  'Patua One',
+  'Poiret One',
+  'Righteous',
+  'Shrikhand'
+]
+
+const randomPick = (array) => array[Math.floor(Math.random() * array.length)]
+
+const generateName = () => `${randomPick(nouns)}<span class="startup-name-suffix">${randomPick(suffixes)}</span>`
+
+const generateColor = () => {
+  const hexComponents = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
+  const hex = new Array(6).fill('').map(el => randomPick(hexComponents)).join('')
+  return `#${hex}`
+}
+
+const ingify = (verb) => {
+  if (verb === "leverage other's") {
+    return "leveraging other's"
+  } else if (verb[verb.length - 1] === 'e') {
+    return verb.slice(0, verb.length - 1) + 'ing'
+  } else {
+    return verb + 'ing'
+  }
+}
+
+window.onload = function () {
+  const button = document.querySelector('button')
+  button.addEventListener('click', function () {
+    const loadingTextTarget = document.getElementById('loading-text-target')
+    const startupNameTarget = document.getElementById('startup-name-target')
+    const startUpName = generateName()
+    const loadingTexts = new Array(3).fill('')
+      .map(el => {
+        const verb = ingify(randomPick(loadingText.verbs))
+        return `<em>${randomPick(loadingText.adverbs)} ${verb} ${randomPick(loadingText.nouns)}...<em>`
+      })
+
+    startupNameTarget.innerHTML = ''
+    loadingTextTarget.innerHTML = loadingTexts[0]
+    
+    setTimeout(
+      function () { loadingTextTarget.innerHTML = loadingTexts[1] }, 1500
+    )
+
+    setTimeout(
+      function () { loadingTextTarget.innerHTML = loadingTexts[2] }, 3000
+    )
+
+    setTimeout(
+      function () {
+        loadingTextTarget.innerHTML = ''
+        startupNameTarget.innerHTML = startUpName
+        var startupNameFont = randomPick(fonts)
+        var startupNameTextColor = generateColor()
+        startupNameTarget.setAttribute('style', `font-family:"${startupNameFont}";color:${startupNameTextColor}`)
+        if (startupNameFont === 'Open Sans' || Math.random() < .4) {
+          document.querySelector('.startup-name-suffix').setAttribute('style', `color:${generateColor()}`)
+        }
+      }, 4500
+    )
+  })
+}
