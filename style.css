@@ -1,5 +1,8 @@
 body {
   text-align: center;
+  height: 100%;
+  background: burlywood;
+  font-family: Roboto, sans-serif;
 }
 
 h1 {
@@ -17,13 +20,16 @@ button {
   border: none;
   font-size: 36px;
   margin-bottom: 20px;
+  border: 5px solid black;
+  padding: 10px 20px;
 }
 
 div {
-  font-size: 72px;
-  font-family: 'Ubuntu Mono', monospace;
+  font-size: 36px;
 }
 
 div.startup-name {
+  color: #478F00;
+  font-size: 72px;
   font-family: 'Nunito', sans-serif;
 }
