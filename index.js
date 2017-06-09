@@ -1571,12 +1571,46 @@ const loadingText = {
       ],
 }
 
+const fonts = [
+  'Abril Fatface',
+  'Alfa Slab One',
+  'Audiowide',
+  'Baloo Bhaina',
+  'Boogaloo',
+  'Bowlby One',
+  'Chewy',
+  'Coiny',
+  'Comfortaa',
+  'Crushed',
+  'Fredoka One',
+  'Lobster',
+  'Lobster Two',
+  'Luckiest Guy',
+  'Modak',
+  'Mogra',
+  'Nunito',
+  'Open Sans',
+  'Passion One',
+  'Patua One',
+  'Poiret One',
+  'Righteous',
+  'Shrikhand'
+]
+
 const randomPick = (array) => array[Math.floor(Math.random() * array.length)]
 
 const generateName = () => randomPick(nouns) + randomPick(suffixes)
 
+const generateColor = () => {
+  const hexComponents = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
+  const hex = new Array(6).fill('').map(el => randomPick(hexComponents)).join('')
+  return `#${hex}`
+}
+
 const ingify = (verb) => {
-  if (verb[verb.length - 1] === 'e') {
+  if (verb === "leverage other's") {
+    return "leveraging other's"
+  } else if (verb[verb.length - 1] === 'e') {
     return verb.slice(0, verb.length - 1) + 'ing'
   } else {
     return verb + 'ing'
@@ -1609,6 +1643,7 @@ window.onload = function () {
     setTimeout(
       function () {
         loadingTextTarget.innerHTML = ''
+        startupNameTarget.setAttribute('style', `font-family:"${randomPick(fonts)}";color:${generateColor()}`)
         startupNameTarget.innerHTML = startUpName
       }, 4500
     )
