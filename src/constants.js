@@ -1,4 +1,4 @@
-const suffixes = [
+export const suffixes = [
   'ly',
   'able',
   'vest',
@@ -9,7 +9,7 @@ const suffixes = [
   'space'
 ]
 
-const nouns = [
+export const nouns = [
   "people",
   "history",
   "way",
@@ -1534,7 +1534,7 @@ const nouns = [
   "yesterday"
 ]
 
-const loadingText = {
+export const loadingText = {
       nouns : [
         'action items', 'alignments', 'applications', 'architectures', 'bandwidth', 'benefits',
         'best practices', 'catalysts for change', 'channels', 'collaboration and idea-sharing', 'communities', 'content',
@@ -1555,7 +1555,7 @@ const loadingText = {
         'drive', 'embrace', 'e-enable', 'empower', 'enable', 'engage', 'engineer', 'enhance', 'envisioneer', 'evisculate',
         'evolve', 'expedite', 'exploit', 'extend', 'fabricate', 'facilitate', 'fashion', 'formulate', 'foster', 'generate',
         'grow', 'harness', 'impact', 'implement', 'incentivize', 'incubate', 'initiate', 'innovate', 'integrate', 'iterate',
-        'leverage existing', 'leverage other\'s', 'maintain', 'matrix', 'maximize', 'mesh', 'monetize', 'morph', 'myocardinate',
+        'maintain', 'matrix', 'maximize', 'mesh', 'monetize', 'morph', 'myocardinate',
         'negotiate', 'network', 'optimize', 'orchestrate', 'parallel task', 'plagiarize', 'pontificate', 'predominate',
         'procrastinate', 'productivate', 'productize', 'promote', 'provide access to', 'pursue', 'recaptiualize',
         'reconceptualize', 'redefine', 're-engineer', 'reintermediate', 'reinvent', 'repurpose', 'restore', 'revolutionize',
@@ -1571,7 +1571,7 @@ const loadingText = {
       ],
 }
 
-const fonts = [
+export const fonts = [
   'Abril Fatface',
   'Alfa Slab One',
   'Audiowide',
@@ -1585,7 +1585,6 @@ const fonts = [
   'Lobster Two',
   'Luckiest Guy',
   'Modak',
-  'Mogra',
   'Nunito',
   'Open Sans',
   'Passion One',
@@ -1594,61 +1593,3 @@ const fonts = [
   'Righteous',
   'Shrikhand'
 ]
-
-const randomPick = (array) => array[Math.floor(Math.random() * array.length)]
-
-const generateName = () => `${randomPick(nouns)}<span class="startup-name-suffix">${randomPick(suffixes)}</span>`
-
-const generateColor = () => {
-  const hexComponents = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
-  const hex = new Array(6).fill('').map(el => randomPick(hexComponents)).join('')
-  return `#${hex}`
-}
-
-const ingify = (verb) => {
-  if (verb === "leverage other's") {
-    return "leveraging other's"
-  } else if (verb[verb.length - 1] === 'e') {
-    return verb.slice(0, verb.length - 1) + 'ing'
-  } else {
-    return verb + 'ing'
-  }
-}
-
-window.onload = function () {
-  const button = document.querySelector('button')
-  button.addEventListener('click', function () {
-    const loadingTextTarget = document.getElementById('loading-text-target')
-    const startupNameTarget = document.getElementById('startup-name-target')
-    const startUpName = generateName()
-    const loadingTexts = new Array(3).fill('')
-      .map(el => {
-        const verb = ingify(randomPick(loadingText.verbs))
-        return `<em>${randomPick(loadingText.adverbs)} ${verb} ${randomPick(loadingText.nouns)}...<em>`
-      })
-
-    startupNameTarget.innerHTML = ''
-    loadingTextTarget.innerHTML = loadingTexts[0]
-    
-    setTimeout(
-      function () { loadingTextTarget.innerHTML = loadingTexts[1] }, 1500
-    )
-
-    setTimeout(
-      function () { loadingTextTarget.innerHTML = loadingTexts[2] }, 3000
-    )
-
-    setTimeout(
-      function () {
-        loadingTextTarget.innerHTML = ''
-        startupNameTarget.innerHTML = startUpName
-        var startupNameFont = randomPick(fonts)
-        var startupNameTextColor = generateColor()
-        startupNameTarget.setAttribute('style', `font-family:"${startupNameFont}";color:${startupNameTextColor}`)
-        if (startupNameFont === 'Open Sans' || Math.random() < .4) {
-          document.querySelector('.startup-name-suffix').setAttribute('style', `color:${generateColor()}`)
-        }
-      }, 4500
-    )
-  })
-}
