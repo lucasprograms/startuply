@@ -1531,11 +1531,83 @@ const nouns = [
   "yesterday"
 ]
 
-const generateName = () => {
-  const noun = nouns[Math.floor(Math.random() * nouns.length)]
-  const suffix = suffixes[Math.floor(Math.random() * suffixes.length)]
-
-  return noun + suffix
+const loadingText = {
+      nouns : [
+        'action items', 'alignments', 'applications', 'architectures', 'bandwidth', 'benefits',
+        'best practices', 'catalysts for change', 'channels', 'collaboration and idea-sharing', 'communities', 'content',
+        'convergence', 'core competencies', 'customer service', 'data', 'deliverables', 'e-business', 'e-commerce', 'e-markets',
+        'e-tailers', 'e-services', 'experiences', 'expertise', 'functionalities', 'growth strategies', 'human capital',
+        'ideas', 'imperatives', 'infomediaries', 'information', 'infrastructures', 'initiatives', 'innovation',
+        'intellectual capital', 'interfaces', 'internal or "organic" sources', 'leadership', 'leadership skills',
+        'manufactured products', 'markets', 'materials', 'meta-services', 'methodologies', 'methods of empowerment', 'metrics',
+        'mindshare', 'models', 'networks', 'niches', 'niche markets', 'opportunities', '"outside the box" thinking', 'outsourcing',
+        'paradigms', 'partnerships', 'platforms', 'portals', 'potentialities', 'process improvements', 'processes', 'products',
+        'quality vectors', 'relationships', 'resources', 'results', 'ROI', 'scenarios', 'schemas', 'services', 'solutions',
+        'sources', 'strategic theme areas', 'supply chains', 'synergy', 'systems', 'technologies', 'technology',
+        'testing procedures', 'total linkage', 'users', 'value', 'vortals', 'web-readiness', 'web services'
+      ],
+      verbs : [
+        'actualize', 'administrate', 'aggregate', 'architect', 'benchmark', 'brand', 'build', 'communicate', 'conceptualize',
+        'coordinate', 'create', 'cultivate', 'customize', 'deliver', 'deploy', 'develop', 'disintermediate', 'disseminate',
+        'drive', 'embrace', 'e-enable', 'empower', 'enable', 'engage', 'engineer', 'enhance', 'envisioneer', 'evisculate',
+        'evolve', 'expedite', 'exploit', 'extend', 'fabricate', 'facilitate', 'fashion', 'formulate', 'foster', 'generate',
+        'grow', 'harness', 'impact', 'implement', 'incentivize', 'incubate', 'initiate', 'innovate', 'integrate', 'iterate',
+        'leverage existing', 'leverage other\'s', 'maintain', 'matrix', 'maximize', 'mesh', 'monetize', 'morph', 'myocardinate',
+        'negotiate', 'network', 'optimize', 'orchestrate', 'parallel task', 'plagiarize', 'pontificate', 'predominate',
+        'procrastinate', 'productivate', 'productize', 'promote', 'provide access to', 'pursue', 'recaptiualize',
+        'reconceptualize', 'redefine', 're-engineer', 'reintermediate', 'reinvent', 'repurpose', 'restore', 'revolutionize',
+        'scale', 'seize', 'simplify', 'strategize', 'streamline', 'supply', 'syndicate', 'synergize', 'synthesize', 'target',
+        'transform', 'transition', 'underwhelm', 'unleash', 'utilize', 'visualize', 'whiteboard'
+      ],
+      adverbs : [
+        'appropriately', 'assertively', 'authoritatively', 'collaboratively', 'compellingly', 'competently', 'completely',
+        'continually', 'conveniently', 'credibly', 'distinctively', 'dramatically', 'dynamically', 'efficiently',
+        'energistically', 'enthusiastically', 'globally', 'holisticly', 'interactively', 'intrinsicly', 'monotonectally',
+        'objectively', 'phosfluorescently', 'proactively', 'professionally', 'progressively', 'quickly', 'rapidiously',
+        'seamlessly', 'synergistically', 'uniquely'
+      ],
 }
 
-console.log(generateName())
+const randomPick = (array) => array[Math.floor(Math.random() * array.length)]
+
+const generateName = () => randomPick(nouns) + randomPick(suffixes)
+
+const ingify = (verb) => {
+  if (verb[verb.length - 1] === 'e') {
+    return verb.slice(0, verb.length - 1) + 'ing'
+  } else {
+    return verb + 'ing'
+  }
+}
+
+window.onload = function () {
+  const button = document.querySelector('button')
+  button.addEventListener('click', function () {
+    const loadingTextTarget = document.getElementById('loading-text-target')
+    const startupNameTarget = document.getElementById('startup-name-target')
+    const startUpName = generateName()
+    const loadingTexts = new Array(3).fill('')
+      .map(el => {
+        const verb = ingify(randomPick(loadingText.verbs))
+        return `<em>${randomPick(loadingText.adverbs)} ${verb} ${randomPick(loadingText.nouns)}...<em>`
+      })
+
+    startupNameTarget.innerHTML = ''
+    loadingTextTarget.innerHTML = loadingTexts[0]
+    
+    setTimeout(
+      function () { loadingTextTarget.innerHTML = loadingTexts[1] }, 1500
+    )
+
+    setTimeout(
+      function () { loadingTextTarget.innerHTML = loadingTexts[2] }, 3000
+    )
+
+    setTimeout(
+      function () {
+        loadingTextTarget.innerHTML = ''
+        startupNameTarget.innerHTML = startUpName
+      }, 4500
+    )
+  })
+}

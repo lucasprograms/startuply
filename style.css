@@ -1,0 +1,29 @@
+body {
+  text-align: center;
+}
+
+h1 {
+  font-size: 48px;
+  font-family: 'Nunito', sans-serif;
+}
+
+h1 .cursive {
+  font-family: 'Vibur', cursive;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+div {
+  font-size: 72px;
+  font-family: 'Ubuntu Mono', monospace;
+}
+
+div.startup-name {
+  font-family: 'Nunito', sans-serif;
+}
