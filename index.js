@@ -1576,8 +1576,6 @@ const fonts = [
   'Alfa Slab One',
   'Audiowide',
   'Baloo Bhaina',
-  'Boogaloo',
-  'Bowlby One',
   'Chewy',
   'Coiny',
   'Comfortaa',
@@ -1599,7 +1597,7 @@ const fonts = [
 
 const randomPick = (array) => array[Math.floor(Math.random() * array.length)]
 
-const generateName = () => randomPick(nouns) + randomPick(suffixes)
+const generateName = () => `${randomPick(nouns)}<span class="startup-name-suffix">${randomPick(suffixes)}</span>`
 
 const generateColor = () => {
   const hexComponents = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
@@ -1623,6 +1621,7 @@ window.onload = function () {
     const loadingTextTarget = document.getElementById('loading-text-target')
     const startupNameTarget = document.getElementById('startup-name-target')
     const startUpName = generateName()
+    console.log(startUpName)
     const loadingTexts = new Array(3).fill('')
       .map(el => {
         const verb = ingify(randomPick(loadingText.verbs))
@@ -1643,8 +1642,11 @@ window.onload = function () {
     setTimeout(
       function () {
         loadingTextTarget.innerHTML = ''
-        startupNameTarget.setAttribute('style', `font-family:"${randomPick(fonts)}";color:${generateColor()}`)
         startupNameTarget.innerHTML = startUpName
+        startupNameTarget.setAttribute('style', `font-family:"${randomPick(fonts)}";color:${generateColor()}`)
+        if (Math.random() < .4) {
+          document.querySelector('.startup-name-suffix').setAttribute('style', `color:${generateColor()}`)
+        }
       }, 4500
     )
   })
