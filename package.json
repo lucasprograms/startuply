@@ -1,0 +1,12 @@
+{
+  "name": "startuply",
+  "version": "0.0.1",
+  "description": "discover the next unicorn",
+  "main": "index.js",
+  "repository": "https://github.com/lucasprograms/startuply.git",
+  "author": "lucasprograms <lucas.mccain@ampf.com>",
+  "license": "MIT",
+  "dependencies": {
+    "webpack": "^2.6.1"
+  }
+}
