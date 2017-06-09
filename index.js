@@ -1621,7 +1621,6 @@ window.onload = function () {
     const loadingTextTarget = document.getElementById('loading-text-target')
     const startupNameTarget = document.getElementById('startup-name-target')
     const startUpName = generateName()
-    console.log(startUpName)
     const loadingTexts = new Array(3).fill('')
       .map(el => {
         const verb = ingify(randomPick(loadingText.verbs))
@@ -1643,8 +1642,10 @@ window.onload = function () {
       function () {
         loadingTextTarget.innerHTML = ''
         startupNameTarget.innerHTML = startUpName
-        startupNameTarget.setAttribute('style', `font-family:"${randomPick(fonts)}";color:${generateColor()}`)
-        if (Math.random() < .4) {
+        var startupNameFont = randomPick(fonts)
+        var startupNameTextColor = generateColor()
+        startupNameTarget.setAttribute('style', `font-family:"${startupNameFont}";color:${startupNameTextColor}`)
+        if (startupNameFont === 'Open Sans' || Math.random() < .4) {
           document.querySelector('.startup-name-suffix').setAttribute('style', `color:${generateColor()}`)
         }
       }, 4500
