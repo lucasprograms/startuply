@@ -1,5 +1,7 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 var path = require('path')
+var webpack = require('webpack')
 
 module.exports = {
   entry: path.resolve(__dirname, 'src', './index.js'),
@@ -27,6 +29,10 @@ module.exports = {
     extensions: ['.js']
   },
   plugins: [
-    new ExtractTextPlugin('bundle.css')
+    new ExtractTextPlugin('bundle.min.css'),
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /\.min\.css$/,
+      cssProcessorOptions: { discardComments: { removeAll: true } }
+    })
   ]
 }
