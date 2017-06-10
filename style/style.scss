@@ -29,12 +29,12 @@ button {
 }
 
 div {
-  .loading-text {
+  &.loading-text {
     font-size: 36px;
     font-style: italic;
   }
 
-  .startup-name {
+  &.startup-name {
     color: #478F00;
     font-size: 72px;
     font-family: 'Nunito', sans-serif;
