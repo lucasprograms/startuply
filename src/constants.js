@@ -1557,7 +1557,7 @@ export const loadingText = {
         'grow', 'harness', 'impact', 'implement', 'incentivize', 'incubate', 'initiate', 'innovate', 'integrate', 'iterate',
         'maintain', 'matrix', 'maximize', 'mesh', 'monetize', 'morph', 'myocardinate',
         'negotiate', 'network', 'optimize', 'orchestrate', 'parallel task', 'plagiarize', 'pontificate', 'predominate',
-        'procrastinate', 'productivate', 'productize', 'promote', 'provide access to', 'pursue', 'recaptiualize',
+        'procrastinate', 'productivate', 'productize', 'promote', 'pursue', 'recaptiualize',
         'reconceptualize', 'redefine', 're-engineer', 'reintermediate', 'reinvent', 'repurpose', 'restore', 'revolutionize',
         'scale', 'seize', 'simplify', 'strategize', 'streamline', 'supply', 'syndicate', 'synergize', 'synthesize', 'target',
         'transform', 'transition', 'underwhelm', 'unleash', 'utilize', 'visualize', 'whiteboard'
