@@ -47,7 +47,7 @@ window.onload = function () {
         loadingTextTarget.innerHTML = ''
         startupNameTarget.innerHTML = generateName()
         startupNameTarget.setAttribute('style', `font-family:"${randomPick(fonts)}";color:${generateColor()}`)
-        if (startupNameFont === 'Open Sans' || Math.random() < .4) {
+        if (Math.random() < .4) {
           document.querySelector('.startup-name-suffix').setAttribute('style', `color:${generateColor()}`)
         }
       }, 4500
