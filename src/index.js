@@ -9,7 +9,9 @@ const generateName = () => `${randomPick(nouns)}<span class="startup-name-suffix
 
 const generateColor = () => {
   const hexComponents = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F']
-  const hex = new Array(6).fill('').map(el => randomPick(hexComponents)).join('')
+  const hex = new Array(6)
+    .fill('')
+    .map(el => randomPick(hexComponents)).join('')
   return `#${hex}`
 }
 
@@ -22,7 +24,8 @@ window.onload = function () {
     const loadingTextTarget = document.getElementById('loading-text-target')
     const startupNameTarget = document.getElementById('startup-name-target')
     const startUpName = generateName()
-    const loadingTexts = new Array(3).fill('')
+    const loadingTexts = new Array(3)
+      .fill('')
       .map(el => {
         const verb = ingify(randomPick(loadingText.verbs))
         return `<em>${randomPick(loadingText.adverbs)} ${verb} ${randomPick(loadingText.nouns)}...<em>`
@@ -42,10 +45,8 @@ window.onload = function () {
     setTimeout(
       function () {
         loadingTextTarget.innerHTML = ''
-        startupNameTarget.innerHTML = startUpName
-        var startupNameFont = randomPick(fonts)
-        var startupNameTextColor = generateColor()
-        startupNameTarget.setAttribute('style', `font-family:"${startupNameFont}";color:${startupNameTextColor}`)
+        startupNameTarget.innerHTML = generateName()
+        startupNameTarget.setAttribute('style', `font-family:"${randomPick(fonts)}";color:${generateColor()}`)
         if (startupNameFont === 'Open Sans' || Math.random() < .4) {
           document.querySelector('.startup-name-suffix').setAttribute('style', `color:${generateColor()}`)
         }
