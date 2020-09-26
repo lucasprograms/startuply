@@ -6,7 +6,9 @@ const suffixes = [
   'mently',
   'Wiz',
   'Stack',
-  'space'
+  'space',
+  'Works',
+  'well',
 ]
 
 const nouns = [
@@ -66,6 +68,8 @@ const nouns = [
   "definition",
   "safety",
   "quality",
+  "learning",
+  "foot",
   "development",
   "language",
   "management",
