@@ -1,3 +1,3 @@
 # startuply
 
-run on the command line: `node index.js`
+Find your next 10x Unicorn
