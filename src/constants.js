@@ -6,7 +6,9 @@ export const suffixes = [
   'mently',
   'Wiz',
   'Stack',
-  'space'
+  'space',
+  'Works',
+  'well',
 ]
 
 export const nouns = [
@@ -66,6 +68,8 @@ export const nouns = [
   "definition",
   "safety",
   "quality",
+  "learning",
+  "foot",
   "development",
   "language",
   "management",
