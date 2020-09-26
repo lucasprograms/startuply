@@ -23,10 +23,9 @@ window.onload = function () {
   button.addEventListener('click', function () {
     const loadingTextTarget = document.getElementById('loading-text-target')
     const startupNameTarget = document.getElementById('startup-name-target')
-    const startUpName = generateName()
     const loadingTexts = new Array(3)
       .fill('')
-      .map(el => {
+      .map(() => {
         const verb = ingify(randomPick(loadingText.verbs))
         return `<em>${randomPick(loadingText.adverbs)} ${verb} ${randomPick(loadingText.nouns)}...<em>`
       })
